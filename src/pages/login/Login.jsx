@@ -13,17 +13,15 @@ const Login = () => {
     // handle form submission logic here
   };
   return (
-    <div className="container mt-5 border w-25 mx-auto py-4 rounded">
+    <div className="container mt-5 border border-danger w-25 mx-auto py-4 rounded">
       <h3 className="text-center">Loign</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail" className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             className="p-2"
+            name="email"
             type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
@@ -32,8 +30,7 @@ const Login = () => {
             className="p-2"
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
           />
         </Form.Group>
         <div className="text-center mt-3">
@@ -46,10 +43,6 @@ const Login = () => {
           <p className="mx-2 mb-0">or</p>
           <hr className="w-25" />
         </div>
-        {/* <ButtonGroup className="my-3">
-          <Button variant="outline-primary">Login with Google</Button>
-          <Button variant="outline-dark">Login with GitHub</Button>
-        </ButtonGroup> */}
         <button className="btn btn-outline-danger btn-lg btn-block w-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +73,8 @@ const Login = () => {
         <button className="btn btn-outline-dark btn-lg btn-block w-100 mt-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width="20"
+            height="20"
             fill="currentColor"
             className="bi bi-github me-2"
             viewBox="0 0 16 16"
