@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import './Footer.css'
+import { FaFacebookSquare, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
+
 
 const Footer = () => {
   return (
-    <footer className="bg-danger text-white mt-5">
+    <footer className="bgColor text-white mt-5">
       <div className="container py-3">
         <div className="row">
           <div className="col-md-6">
@@ -17,7 +17,7 @@ const Footer = () => {
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                  Facebook
+                 <FaFacebookSquare></FaFacebookSquare> Facebook
                 </a>
               </li>
               <li className="list-inline-item">
@@ -26,16 +26,7 @@ const Footer = () => {
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                  Twitter
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a
-                  href="#"
-                  className="text-white"
-                  style={{ textDecoration: "none" }}
-                >
-                  LinkedIn
+                  <FaTwitterSquare></FaTwitterSquare> Twitter
                 </a>
               </li>
             </ul>

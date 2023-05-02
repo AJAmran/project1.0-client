@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '../../component/shared/header/Header';
+import Footer from '../../component/shared/footer/Footer';
 
 const Registration = () => {
     return (

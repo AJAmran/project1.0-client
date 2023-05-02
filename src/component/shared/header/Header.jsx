@@ -1,34 +1,30 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import logo from "../../../assets/logo.png";
-import Button from "react-bootstrap/Button";
-import { Link, Navigate } from "react-router-dom";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
+import logo from '../../../assets/logo.png'
 const Header = () => {
-  const user = ''
+  const user = null;
   return (
-    <Navbar collapseOnSelect expand="lg" bg="danger" variant="dark">
-    <Container>
-      <Navbar.Brand href="#home"><img src={logo} style={{height:'40px'}} alt="" /></Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ms-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#blog">
-            Blog
-          </Nav.Link>
+      <Navbar bg="danger" expand="lg" variant="dark">
+        <Container>
+        <img src={logo} alt="" className="" height={"50px"}/>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-           { user ? <>user ace</>
-           :
-           <Link to='/login'>
-           <Button variant="outline-light">Login</Button></Link>
-           }
+            <Nav.Link as={NavLink} exact to="/" activeClassName="active">
+              Home
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/blog" activeClassName="active">
+              Blog
+            </Nav.Link>
+            { user ? <>userPoto</>
+              :
+              <Link to="/login"><Button variant="outline-light">Login</Button></Link>
+            }
           </Nav>
-        </Nav>
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>
+        </Navbar.Collapse>
+        </Container>
+      </Navbar>
   );
 };
 
