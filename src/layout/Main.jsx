@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../component/shared/header/Header';
 import Footer from '../component/shared/footer/Footer';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
 const Main = () => {
     return (

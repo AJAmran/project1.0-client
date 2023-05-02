@@ -7,6 +7,7 @@ import Main from '../../layout/Main';
 import Registration from '../../pages/registration/Registration';
 import Home from '../../pages/home/home';
 import Blog from '../../pages/blog/Blog';
+import Recipes from '../../pages/recipes/Recipes';
 
   const router = createBrowserRouter([
     {
@@ -15,7 +16,8 @@ import Blog from '../../pages/blog/Blog';
       children:[
         {
             path:'/',
-            element: <Home></Home>
+            element: <Home></Home>,
+            loader: () =>fetch(`https://cooks-cantina-server-ajamran.vercel.app/alldata`),
         },
         {
           path: '/login',
@@ -28,6 +30,10 @@ import Blog from '../../pages/blog/Blog';
         {
           path: '/blog',
           element: <Blog></Blog>
+        },
+        {
+          path:'/recipe',
+          element:<Recipes></Recipes>
         }
       ]
     },

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, ButtonGroup } from "react-bootstrap";
-import gsing from "../../assets/googleSing.png";
-import gitsin from "../../assets/github.png";
+import './Login.css'
+
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
     // handle form submission logic here
   };
   return (
-    <div className="container mt-5 border border-danger w-25 mx-auto py-4 rounded">
+    <div className="container mt-5 border border-danger w-25 mx-auto py-4 rounded margin-bottom-log h-100">
       <h3 className="text-center">Loign</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail" className="mb-3">

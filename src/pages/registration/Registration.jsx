@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Lottie from "lottie-react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Container, Row, Col } from "react-bootstrap";
 import loglott from "../../assets/lottie.json";
+import "./Registar.css";
 import { Link } from "react-router-dom";
 const Registration = () => {
   const [name, setName] = useState("");
@@ -13,8 +14,8 @@ const Registration = () => {
     // handle form submission here
   };
   return (
-    <Container>
-      <Row className="align-items-center justify-content-center">
+    <Container className="margin-bottom">
+      <Row className="align-items-center justify-content-center h-100">
         <Col md={4} className="">
           <Form
             onSubmit={handleSubmit}
@@ -64,14 +65,22 @@ const Registration = () => {
               <button className="btn btn-outline-danger w-100">Loging</button>
             </div>
             <div className="d-flex justify-content-center align-items-center my-3">
-          <hr className="w-25" />
-          <p className="mx-2 mb-0">or</p>
-          <hr className="w-25" />
-        </div>
-            <p>Already have an account <Link to='/login' className="fw-bold fs-6"> Login</Link></p>
+              <hr className="w-25" />
+              <p className="mx-2 mb-0">or</p>
+              <hr className="w-25" />
+            </div>
+            <p>
+              Already have an account{" "}
+              <Link to="/login" className="fw-bold fs-6">
+                {" "}
+                Login
+              </Link>
+            </p>
           </Form>
         </Col>
-        <Col md={4}><Lottie animationData={loglott}></Lottie></Col>
+        <Col md={4}>
+          <Lottie animationData={loglott}></Lottie>
+        </Col>
       </Row>
     </Container>
   );

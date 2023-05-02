@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "../../component/shared/header/Header";
-import Footer from "../../component/shared/footer/Footer";
 import chep1 from "../../assets/chef 1.jpg"
-import { Button, Container } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Home = () => {
+    const alldata = useLoaderData();
+    console.log(alldata)
   return (
     <div>
       <Container className="bg-light">
@@ -26,6 +27,25 @@ const Home = () => {
             <img src={chep1} alt="" className="img-fluid h-100 w-100 rounded"/>
           </div>
         </div>
+      </Container>
+      <Container>
+      <Row xs={1} md={2} className="g-4 mt-5 mb-5">
+      {alldata.map(data => (
+        <Col key={data.id}>
+          <Card className="h-100">
+            <Card.Img variant="top" src={data.chef_img} className="h-100"/>
+            <Card.Body>
+              <Card.Title>{data.chef_name}</Card.Title>
+              <p>Experience: {data.experience}</p>
+              <p>recipes: {data.num_recipes}</p>
+              <Link to="/recipe">
+              <button className="btn btn-danger">Show recipe</button></Link>
+              
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
       </Container>
     </div>
   );
