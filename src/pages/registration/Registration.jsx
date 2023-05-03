@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AutContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
-  const {createUser} = useContext(AutContext);
+  const { createUser, updateUser } = useContext(AutContext);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
@@ -15,26 +15,38 @@ const Registration = () => {
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
-    const photUrl = form.photo_url.value;
+    const photoUrl = form.photo_url.value;
     const password = form.password.value;
-    if(password.length <6){
-      return setError("Please Enter at least 8 Character")
+    if (password.length < 6) {
+      return setError("Please Enter at least 8 Character");
     }
-    // if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    //   return setError("Enter A valid Email")
-    // }
+
     createUser(email, password)
-    .then(result =>{
-      const createdUser = result.user;
-      navigate('/login')
-    })
-    .catch(error =>{
-      return setError(error.message);
-    })
+      .then((result) => {
+        const createdUser = result.user;
+        navigate("/login");
+        updateUser(name, photoUrl)
+          .then((result) => {
+            const loggedUser = result.user;
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+      })
+      .catch((error) => {
+        return setError(error.message);
+      });
+
+    updateUser(name, photoUrl)
+      .then((result) => {
+        const loggedUser = result.user;
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
     form.reset();
     console.log(name, email, password), photUrl;
     setError(null);
-  
   };
   return (
     <Container className="margin-bottom">

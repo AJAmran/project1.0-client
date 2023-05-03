@@ -1,28 +1,62 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, ButtonGroup } from "react-bootstrap";
-import './Login.css'
-
+import "./Login.css";
 import { Link } from "react-router-dom";
+import { AutContext } from "../../provider/AuthProvider";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { singIn, user, gSingIn, gitHubSingIn } = useContext(AutContext);
+  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handle form submission logic here
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    if (email != user.email) {
+      return setError("User Does not exits");
+    }
+    singIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .then((error) => {
+        setError(error.message);
+      });
+
+    console.log(email, password, user.email);
+    setError("");
+    form.reset();
   };
+
+  const googlSinIn = () => {
+    gSingIn()
+      .then((result) => {
+        const loggedUser = result.user;
+      })
+      .catch((error) => {
+        return setError(error.message);
+      });
+  };
+
+  const handleGitHubSignIn = () =>{
+    gitHubSingIn()
+    .then(result =>{
+      const logdedUser = result.user;
+    })
+    .catch(error =>{
+      setError(error.message)
+    })
+  }
+
   return (
     <div className="container mt-5 border border-danger w-25 mx-auto py-4 rounded margin-bottom-log h-100">
       <h3 className="text-center">Loign</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail" className="mb-3">
           <Form.Label>Email address</Form.Label>
-          <Form.Control
-            className="p-2"
-            name="email"
-            type="email"
-          />
+          <Form.Control className="p-2" name="email" type="email" />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
@@ -38,12 +72,16 @@ const Login = () => {
             Loging
           </button>
         </div>
+        <p className="mt-1 text-danger">{error}</p>
         <div className="d-flex justify-content-center align-items-center my-3">
           <hr className="w-25" />
           <p className="mx-2 mb-0">or</p>
           <hr className="w-25" />
         </div>
-        <button className="btn btn-outline-danger btn-lg btn-block w-100">
+        <button
+          onClick={googlSinIn}
+          className="btn btn-outline-danger btn-lg btn-block w-100"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 533.5 544.3"
@@ -70,7 +108,7 @@ const Login = () => {
           </svg>
           Sign in with Google
         </button>
-        <button className="btn btn-outline-dark btn-lg btn-block w-100 mt-3">
+        <button onClick={handleGitHubSignIn} className="btn btn-outline-dark btn-lg btn-block w-100 mt-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

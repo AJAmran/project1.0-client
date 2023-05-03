@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../../assets/logo.png'
+import { AutContext } from "../../../provider/AuthProvider";
 const Header = () => {
-  const user = null;
+  const {user, logOut} = useContext(AutContext)
+  console.log(user)
+  const handleLogout = ()=>{
+    logOut();
+  }
   return (
       <Navbar bg="danger" expand="lg" variant="dark">
         <Container>
@@ -17,9 +22,13 @@ const Header = () => {
             <Nav.Link as={NavLink} to="/blog" activeClassName="active">
               Blog
             </Nav.Link>
-            { user ? <>userPoto</>
+            { user ? <img src={user.photoURL}alt="" style={{height: "40px", width: "40px"}} className="rounded-circle" title={user.displayName}/>
               :
               <Link to="/login"><Button variant="outline-light">Login</Button></Link>
+            }
+            { user ?  <Button variant="outline-light" className="ms-1" style={{width:"100px"}} onClick={handleLogout}>Logout</Button>
+              :
+              ''
             }
           </Nav>
         </Navbar.Collapse>
