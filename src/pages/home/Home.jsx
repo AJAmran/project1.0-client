@@ -14,7 +14,6 @@ import food from "../../assets/food.png";
 
 const Home = () => {
   const alldata = useLoaderData();
-  console.log(alldata);
   return (
     <div>
       <Container className="bg-light">

@@ -16,6 +16,7 @@ const Login = () => {
     singIn(email, password)
     .then(result =>{
       const loggedUser = result.user;
+
     })
     .catch(error =>{
       setError(error.message)
