@@ -11,6 +11,7 @@ import menu from "../../assets/menu.png";
 import cook from "../../assets/cook.png";
 import chef from "../../assets/chef.png";
 import food from "../../assets/food.png";
+import LazyLoad from "react-lazy-load";
 
 const Home = () => {
   const alldata = useLoaderData();
@@ -47,7 +48,10 @@ const Home = () => {
           {alldata.map((data) => (
             <Col key={data.id}>
               <Card className="h-100">
-                <Card.Img variant="top" src={data.chef_img} className="h-100" />
+                <LazyLoad height={350}>
+                <Card.Img variant="top" src={data.chef_img} className="h-100 w-100" />
+                </LazyLoad>
+                {/* <Card.Img variant="top" src={data.chef_img} className="h-100" /> */}
                 <Card.Body>
                   <Card.Title>{data.chef_name}</Card.Title>
                   <p className="p-0 m-0">Experience: {data.experience}</p>
