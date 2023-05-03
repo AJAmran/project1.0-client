@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Form, Button, ButtonGroup } from "react-bootstrap";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AutContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const { singIn, user, gSingIn, gitHubSingIn } = useContext(AutContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/'
   const [error, setError] = useState(null);
 
   const handleSubmit = (event)=>{
@@ -16,6 +19,7 @@ const Login = () => {
     singIn(email, password)
     .then(result =>{
       const loggedUser = result.user;
+      navigate(from, {replace: true})
 
     })
     .catch(error =>{

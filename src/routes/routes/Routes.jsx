@@ -9,6 +9,7 @@ import Home from '../../pages/home/home';
 import Blog from '../../pages/blog/Blog';
 import Recipes from '../../pages/recipes/Recipes';
 import NotFound from '../../pages/notFound/NotFound';
+import PrivateRout from '../privateRoute/PrivateRout';
 
   const router = createBrowserRouter([
     {
@@ -35,7 +36,7 @@ import NotFound from '../../pages/notFound/NotFound';
         },
         {
           path:'/recipe/:id',
-          element:<Recipes></Recipes>,
+          element:<PrivateRout><Recipes></Recipes></PrivateRout>,
           loader: () =>fetch(`https://cooks-cantina-server-ajamran.vercel.app/alldata`),
         }
       ]
