@@ -38,7 +38,7 @@ const Home = () => {
               <Card.Title>{data.chef_name}</Card.Title>
               <p>Experience: {data.experience}</p>
               <p>recipes: {data.num_recipes}</p>
-              <Link to="/recipe">
+              <Link to={`/recipe/${data.id}`}>
               <button className="btn btn-danger">Show recipe</button></Link>
               
             </Card.Body>

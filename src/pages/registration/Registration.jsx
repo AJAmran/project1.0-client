@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Lottie from "lottie-react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import loglott from "../../assets/lottie.json";
 import "./Registar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AutContext } from "../../provider/AuthProvider";
+
 const Registration = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("");
-  const [password, setPassword] = useState("");
+  const {createUser} = useContext(AutContext);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle form submission here
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photUrl = form.photo_url.value;
+    const password = form.password.value;
+    if(password.length <6){
+      return setError("Please Enter at least 8 Character")
+    }
+    // if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    //   return setError("Enter A valid Email")
+    // }
+    createUser(email, password)
+    .then(result =>{
+      const createdUser = result.user;
+      navigate('/login')
+    })
+    .catch(error =>{
+      return setError(error.message);
+    })
+    form.reset();
+    console.log(name, email, password), photUrl;
+    setError(null);
+  
   };
   return (
     <Container className="margin-bottom">
@@ -56,14 +79,17 @@ const Registration = () => {
                 type="password"
                 name="password"
                 placeholder="Enter password"
-                minLength={8}
+                // minLength={8}
                 required
               />
             </Form.Group>
 
             <div className="text-center mt-3">
-              <button className="btn btn-outline-danger w-100">Loging</button>
+              <button className="btn btn-outline-danger w-100 fw-bold">
+                Rgister
+              </button>
             </div>
+            <p className="text-danger mt-2">{error}</p>
             <div className="d-flex justify-content-center align-items-center my-3">
               <hr className="w-25" />
               <p className="mx-2 mb-0">or</p>

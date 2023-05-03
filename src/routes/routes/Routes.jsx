@@ -32,8 +32,9 @@ import Recipes from '../../pages/recipes/Recipes';
           element: <Blog></Blog>
         },
         {
-          path:'/recipe',
-          element:<Recipes></Recipes>
+          path:'/recipe/:id',
+          element:<Recipes></Recipes>,
+          loader: () =>fetch(`https://cooks-cantina-server-ajamran.vercel.app/alldata`),
         }
       ]
     },
