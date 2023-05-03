@@ -7,8 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AutContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
-  const { createUser, updateUser } = useContext(AutContext);
-  const [error, setError] = useState(null);
+  const { createUser, updateUser, logOut } = useContext(AutContext);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,7 +24,6 @@ const Registration = () => {
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
-        navigate("/login");
         updateUser(name, photoUrl)
           .then((result) => {
             const loggedUser = result.user;
@@ -32,21 +31,14 @@ const Registration = () => {
           .catch((error) => {
             setError(error.message);
           });
+          logOut()
+          navigate("/login");
       })
       .catch((error) => {
         return setError(error.message);
       });
-
-    updateUser(name, photoUrl)
-      .then((result) => {
-        const loggedUser = result.user;
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
     form.reset();
-    console.log(name, email, password), photUrl;
-    setError(null);
+    setError('');
   };
   return (
     <Container className="margin-bottom">

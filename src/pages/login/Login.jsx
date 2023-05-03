@@ -8,27 +8,20 @@ const Login = () => {
   const { singIn, user, gSingIn, gitHubSingIn } = useContext(AutContext);
   const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value
     const password = form.password.value;
-    if (email != user.email) {
-      return setError("User Does not exits");
-    }
     singIn(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-      })
-      .then((error) => {
-        setError(error.message);
-      });
-
-    console.log(email, password, user.email);
-    setError("");
+    .then(result =>{
+      const loggedUser = result.user;
+    })
+    .catch(error =>{
+      setError(error.message)
+    })
     form.reset();
-  };
+  }
 
   const googlSinIn = () => {
     gSingIn()
@@ -40,15 +33,15 @@ const Login = () => {
       });
   };
 
-  const handleGitHubSignIn = () =>{
+  const handleGitHubSignIn = () => {
     gitHubSingIn()
-    .then(result =>{
-      const logdedUser = result.user;
-    })
-    .catch(error =>{
-      setError(error.message)
-    })
-  }
+      .then((result) => {
+        const logdedUser = result.user;
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
 
   return (
     <div className="container mt-5 border border-danger w-25 mx-auto py-4 rounded margin-bottom-log h-100">
@@ -108,7 +101,10 @@ const Login = () => {
           </svg>
           Sign in with Google
         </button>
-        <button onClick={handleGitHubSignIn} className="btn btn-outline-dark btn-lg btn-block w-100 mt-3">
+        <button
+          onClick={handleGitHubSignIn}
+          className="btn btn-outline-dark btn-lg btn-block w-100 mt-3"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

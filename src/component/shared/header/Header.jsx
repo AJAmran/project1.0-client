@@ -22,7 +22,7 @@ const Header = () => {
             <Nav.Link as={NavLink} to="/blog" activeClassName="active">
               Blog
             </Nav.Link>
-            { user ? <img src={user.photoURL}alt="" style={{height: "40px", width: "40px"}} className="rounded-circle" title={user.displayName}/>
+            { user ? <img src={user?.photoURL}alt="" style={{height: "40px", width: "40px"}} className="rounded-circle" title={user?.displayName}/>
               :
               <Link to="/login"><Button variant="outline-light">Login</Button></Link>
             }
