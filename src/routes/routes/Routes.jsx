@@ -8,11 +8,13 @@ import Registration from '../../pages/registration/Registration';
 import Home from '../../pages/home/home';
 import Blog from '../../pages/blog/Blog';
 import Recipes from '../../pages/recipes/Recipes';
+import NotFound from '../../pages/notFound/NotFound';
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <NotFound></NotFound>,
       children:[
         {
             path:'/',
