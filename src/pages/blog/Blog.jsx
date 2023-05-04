@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import bgbanner from "../../assets/blogBanner.jpg";
 import Pdf from "react-to-pdf";
 import { Container } from "react-bootstrap";
+
+
 const ref = React.createRef();
 const Blog = () => {
   return (
@@ -22,7 +24,11 @@ const Blog = () => {
             This is where <br /> I write about things that interest me. Check
             back often for new posts!{" "}
           </h4>
-          <p>"Our latest blog post discusses the top trends in digital marketing for 2021, including the importance of video content and personalized marketing strategies."</p>
+          <p>
+            "Our latest blog post discusses the top trends in digital marketing
+            for 2021, including the importance of video content and personalized
+            marketing strategies."
+          </p>
           <Pdf targetRef={ref} filename="code-example.pdf">
             {({ toPdf }) => (
               <button
@@ -104,10 +110,10 @@ const Blog = () => {
           </h5>
           <p className="bg-white m-0 p-0">
             A custom hook is a JavaScript function that starts with the prefix
-            'use' and allows us to extract and reuse logic between components
-            in React. We might create a custom hook when we have a set of
-            functionality that is used across multiple components and we want
-            to encapsulate that functionality in a single reusable hook. Custom
+            'use' and allows us to extract and reuse logic between components in
+            React. We might create a custom hook when we have a set of
+            functionality that is used across multiple components and we want to
+            encapsulate that functionality in a single reusable hook. Custom
             hooks help to avoid code duplication and make our code more modular
             and easier to maintain.
           </p>

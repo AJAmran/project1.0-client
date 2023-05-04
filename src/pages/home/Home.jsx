@@ -18,6 +18,7 @@ const Home = () => {
   const alldata = useLoaderData();
   return (
     <div>
+      {/* ---Banner Section ------ */}
       <Container className="bg-light">
         <div className="d-flex flex-column align-items-center flex-md-row gap-2 gap-md-0 rounded">
           <div className="p-3">
@@ -44,6 +45,9 @@ const Home = () => {
           </div>
         </div>
       </Container>
+
+      {/* ----Chef info seciton ----*/}
+
       <Container>
         <Row xs={1} md={2} className="g-4 mt-5 mb-5">
           {alldata.map((data) => (
@@ -56,7 +60,6 @@ const Home = () => {
                     className="h-100 w-100"
                   />
                 </LazyLoad>
-                {/* <Card.Img variant="top" src={data.chef_img} className="h-100" /> */}
                 <Card.Body>
                   <Card.Title>{data.chef_name}</Card.Title>
                   <p className="p-0 m-0">Experience: {data.experience}</p>
@@ -74,6 +77,9 @@ const Home = () => {
             </Col>
           ))}
         </Row>
+
+        {/*------ Feature Section ------*/}
+
         <div>
           <h3 className="text-center fw-bold">
             Get a Many of Interesting Feature
@@ -145,6 +151,9 @@ const Home = () => {
             </Col>
           </Row>
         </div>
+
+        {/* Food Gallery section */}
+        
         <div className="mb-5">
           <h3 className="text-center fw-bold">Gallery of Our Food & Cook</h3>
           <p className="text-center">

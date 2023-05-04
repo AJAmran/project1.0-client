@@ -1,7 +1,6 @@
 import React from "react";
-import './Footer.css'
-import { FaFacebookSquare, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
-
+import "./Footer.css";
+import { FaFacebookSquare, FaTwitterSquare } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -17,7 +16,7 @@ const Footer = () => {
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                 <FaFacebookSquare></FaFacebookSquare> Facebook
+                  <FaFacebookSquare></FaFacebookSquare> Facebook
                 </a>
               </li>
               <li className="list-inline-item">

@@ -3,42 +3,47 @@ import { Form } from "react-bootstrap";
 import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AutContext } from "../../provider/AuthProvider";
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+} from "firebase/auth";
 import app from "../../utils/firebase/firebase.config";
 
-
-const auth = getAuth(app)
+const auth = getAuth(app);
 const gProvider = new GoogleAuthProvider();
 const gitProvider = new GithubAuthProvider();
+
 const Login = () => {
   const { singIn } = useContext(AutContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/'
+  const from = location.state?.from?.pathname || "/";
   const [error, setError] = useState(null);
 
-  const handleSubmit = (event)=>{
+  const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value
+    const email = form.email.value;
     const password = form.password.value;
-    singIn(email, password)
-    .then(result =>{
-      const loggedUser = result.user;
-      navigate(from, {replace: true})
 
-    })
-    .catch(error =>{
-      setError(error.message)
-    })
+    singIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
     form.reset();
-  }
+  };
 
   const googlSinIn = () => {
     signInWithPopup(auth, gProvider)
       .then((result) => {
         const loggedUser = result.user;
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -49,7 +54,7 @@ const Login = () => {
     signInWithPopup(auth, gitProvider)
       .then((result) => {
         const logdedUser = result.user;
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);

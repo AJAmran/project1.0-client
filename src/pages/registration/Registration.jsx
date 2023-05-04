@@ -8,7 +8,7 @@ import { AutContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
   const { createUser, updateUser, logOut } = useContext(AutContext);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,14 +31,14 @@ const Registration = () => {
           .catch((error) => {
             setError(error.message);
           });
-          logOut()
-          navigate("/login");
+        logOut();
+        navigate("/login");
       })
       .catch((error) => {
         return setError(error.message);
       });
     form.reset();
-    setError('');
+    setError("");
   };
   return (
     <Container className="margin-bottom">

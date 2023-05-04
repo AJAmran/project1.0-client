@@ -43,11 +43,12 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUser = (name, photoUrl)=>{
+  const updateUser = (name, photoUrl) => {
     return updateProfile(auth.currentUser, {
-        displayName: name, photoURL: photoUrl
-    })
-  }
+      displayName: name,
+      photoURL: photoUrl,
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
@@ -59,7 +60,6 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-
   const authInfo = {
     user,
     createUser,
@@ -70,6 +70,7 @@ const AuthProvider = ({ children }) => {
     gitHubSingIn,
     updateUser,
   };
+  
   return (
     <div>
       <AutContext.Provider value={authInfo}>{children}</AutContext.Provider>
